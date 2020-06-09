@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Object basics: Task 2</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+
+    <section class="preview">
+
+
+
+    </section>
+
+  </body>
+  <script>
+    let bandInfo;
+
+    // Add your code here
+    let hippocampus = {
+    name: 'Hippocampus',
+    nationality: 'US',
+    genre: 'Indie Rock',
+    members: ['Jake Luppen', 'Nathan Stocker', 'Zach Sutton', 
+                'Whistler Allen', 'DeCarlo Jackson'],
+    formed: 2013,
+    split: false,
+    albums: [{name: 'Landmark',
+                released: 2017},
+            {name: 'Bambi',
+                released: 2018},
+            {name: 'Demos I',
+                released: 2019},
+            {name: 'Demos II',
+                released: 2019}]
+    }
+
+    bandInfo = hippocampus.name + ' is an ' + hippocampus.genre + ' band from the '
+    + hippocampus.nationality + '.' + ' Members include: ' + hippocampus.members[0] + 
+    ', ' + hippocampus.members[1] + ', ' + hippocampus.members[2] + ', ' + hippocampus.members[3] + 
+    ', and ' + hippocampus.members[4] + '. ' + hippocampus.name + ' was formed in ' + hippocampus.formed + 
+    ' and went on to release the following albums: ' + hippocampus.albums[0].name + ' (' + 
+    hippocampus.albums[0].released + '), ' + hippocampus.albums[1].name + ' (' 
+    + hippocampus.albums[1].released + '), ' + hippocampus.albums[2].name + ' (' 
+    + hippocampus.albums[2].released + '), and ' + hippocampus.albums[3].name + ' (' 
+    + hippocampus.albums[3].released + ').'
+
+
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+    let para1 = document.createElement('p');
+    para1.textContent = bandInfo;
+    section.appendChild(para1);
+  </script>
+
+</html>
