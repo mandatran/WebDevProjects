@@ -1,0 +1,114 @@
+/* Include Partial Files 
+ * Notice there is no '_' and .scss extension
+ */
+@import './resets';
+@import './variables';
+
+/* Variables
+ * Do not compile into CSS variables, they compile into their actual value
+ * Benefit: They have 100% compatibility across browsers
+ */
+
+// CSS Variable example
+/*
+:root {
+    --primary-color: #272727;
+    --accent-color: #ff652f;
+    --text-color: #fff;
+}
+
+body {
+    background: var(--primary-color);
+}
+*/
+
+// SASS Variable example
+/*
+$primary-color: #272727;
+$accent-color: #ff652f;
+$text-color: #fff;
+// Maps: key-value pairs
+$font-weights: (
+    "regular": 400,
+    "medium": 500,
+    "bold": 700
+);
+*/
+
+/* Functions
+ * Used to compute values and return values
+ */
+@function weight($weight-name) {
+    @return map-get($font-weights, $weight-name);
+}
+
+/* Mix-ins 
+ * Should define styles
+ */
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+body {
+    background: $primary-color;
+    color: $text-color;
+}
+
+.main {
+    @include flexCenter(row);
+    // normal CSS
+    // width: calc(80% - 40%);
+    width: 80% - 40%;
+    margin: 0 auto;
+
+    // nesting
+    //.main__paragraph {
+    #{&}__paragraph1 {
+        //font-weight: map-get($font-weights, bold);
+        // using function
+        font-weight: weight(bold);
+
+        &:hover {
+            color: pink;
+        }
+    }
+
+    #{&}__paragraph2 {
+        @extend .main__paragraph1;
+
+        &:hover {
+            color: $accent-color;
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+    }
+}
+// normally
+/*
+.main p {
+    font-weight: map-get($font-weights, bold);
+}
+*/
+
+
+.light {
+    @include theme($light-theme: true);
+}
